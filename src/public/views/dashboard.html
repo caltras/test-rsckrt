@@ -1,0 +1,33 @@
+<div class="flex column full p-10" ng-controller="DataController">
+	<div class="flex column flex-horizontal-center">
+		<div class="container-table">
+			<h1 class="page-title">Data</h1>
+			<select class="form-select" ng-change="changeThing()" ng-model="thingSelected">
+				<option ng-repeat="t in things" value="{{t._id}}">{{t.name + " ("+t.unit+")"}}</option>
+			</select>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Timestamp</th>
+						<th>Value</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="d in data track by d._id">
+						<td>{{d.timestamp}}</td>
+						<td>{{d.value}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="pagination" ng-if="data.length>0">
+				<button class="btn" ng-disabled="page===1" ng-click="backward()">
+					<span class="fa fa-arrow-left"></span>
+				</button>
+				<button class="btn" ng-disabled="page===totalPage" ng-click="forward()">
+					<span class="fa fa-arrow-right"></span>
+				</button>
+			</div>
+		</div>
+
+	</div>
+</div>
